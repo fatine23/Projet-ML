@@ -12,6 +12,14 @@ from tqdm.auto import tqdm
 
 from transformers import BertTokenizer, AutoModelForSequenceClassification, get_scheduler
 
+
+
+pd.set_option('display.max_colwidth', 200)
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print(device)
+
+
+
 # Hyperparameters
 MAX_LEN = 128
 BATCH_SIZE = 32
@@ -21,7 +29,7 @@ NUM_EPOCHS= 5
 BERT_CHECKPOINT = 'bert-base-uncased'
 
 # Load your dataset
-df = pd.read_csv('../projet ML/IMDB Dataset.csv')  # Replace with the path to your dataset
+df = pd.read_csv('IMDB Dataset.csv')  # Replace with the path to your dataset
 print(f'Numbers of samples: {len(df)}')
 #print(df.head())
 
@@ -231,7 +239,33 @@ y_preds, y_true = test(model, test_loader, device)
 
 # Display classification report and confusion matrix
 print("Classification Report:")
-print(classification_report(y_true, y_preds))
+print(classification_report(torch.tensor(y_true), torch.tensor(y_preds)))
 print("Confusion Matrix:")
-ConfusionMatrixDisplay.from_estimator(estimator=model, X=test_loader, y_true=y_true).plot()
+_ , ax = plt.subplots(figsize=(8,8))
+ConfusionMatrixDisplay.from_predictions(torch.tensor(y_true), torch.tensor(y_preds), ax = ax, colorbar = False);
+
+ 
 plt.show()
+
+
+# Function to predict sentiment
+def predict_sentiment(sentence):
+    # Tokenize and encode the input sentence
+    inputs = tokenizer(sentence, return_tensors="pt")
+    inputs = {key: val.to(device) for key, val in inputs.items()}
+
+    # Forward pass to get logits
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    # Get predicted sentiment
+    predicted_class = torch.argmax(outputs.logits, dim=1).item()
+
+    # Map the predicted class to 'positive' or 'negative'
+    sentiment = "positive" if predicted_class == 1 else "negative"
+
+    return sentiment
+
+# Example usage
+user_input = input("Enter a movie review: ")
+predicted_sentiment = predict_sentiment(user_input)
