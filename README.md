@@ -203,3 +203,4 @@ Une AUC de 0,9 reflète un modèle de haute qualité avec de fortes capacités d
 
 Fournir une interface simple permettant aux utilisateurs de saisir du texte, et le modèle BERT pré-entraîné prédit si le sentiment du texte saisi est positif ou négatif.
 
+![Screenshot from 2023-12-15 17-52-18](https://github.com/fatine23/Projet-ML/assets/113341897/dab4dc9c-f7d1-499b-a271-0a95fd087abf)
