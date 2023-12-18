@@ -194,3 +194,6 @@ La matrice de confusion indique que le modèle fonctionne bien, avec une répart
 
  ![Screenshot from 2023-12-15 17-48-28](https://github.com/fatine23/Projet-ML/assets/113341897/3297c200-bc96-435c-a528-60d89a2caa55)
 
+La courbe indique une séparation parfaite des instances positives et négatives (pour des valeurs très petites de False positive on a une augmentation des True positifs).
+
+Une AUC de 0,9 reflète un modèle de haute qualité avec de fortes capacités de discrimination. Cela suggère que le modèle fonctionne bien sur une gamme de seuils de classification, atteignant un bon équilibre entre les vrais positifs et les faux positifs.
