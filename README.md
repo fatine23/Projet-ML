@@ -143,3 +143,7 @@ Les Data Loaders sont créés à l'aide du "DataLoader" de PyTorch pour gérer l
           scheduler = get_scheduler("linear", optimizer, num_warmup_steps=0, num_training_steps=len(train_loader) * NUM_EPOCHS)
 La combinaison d'un optimizer et d'un Scheduler du Learning Rate permet de former le modèle plus efficacement en ajustant le Learning Rate pendant la formation. Les méthodes de taux d'apprentissage adaptatif comme AdamW sont de puissants optimizers, et les programmes de Learning Rate aident à contrôler l'évolution du Learning Rate pendant le training.
 
+12/ Training Loop:
+
+Boucler sur les époques et entraîner le modèle BERT sur les données d'entraînement. Les mesures d'entraînement telles que la perte et la précision sont enregistrées pour une analyse ultérieure.
+
