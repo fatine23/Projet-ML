@@ -48,10 +48,19 @@ Définire des hyperparamètres tels que MAX_LEN (longueur maximale de la séquen
 
 Implémente une fonction (clean_text) pour supprimer les espaces supplémentaires et les balises HTML des révisions de texte.
 
+          def clean_text(text):
+           """Removes extra whitespaces and html tags from text."""
+           # remove weird spaces
+           text =  " ".join(text.split())
+           # remove html tags
+           text = re.sub(r'<.*?>', '', text)
+           return text
+
 5/ Custom Dataset Class:
 
 -> Définire un Dataset class PyTorch personnalisée (CustomDataset) pour gérer les données des critiques de films.
 -> Tokenise et encode les phrases d'entrée à l'aide du tokenizer BERT.
+
        class CustomDataset(Dataset):
        def __init__(self, review, target, tokenizer, max_len, clean_text=None):
         self.clean_text = clean_text
