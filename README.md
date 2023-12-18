@@ -49,7 +49,9 @@ Définire des hyperparamètres tels que MAX_LEN (longueur maximale de la séquen
 3/ Chargement et prétraitement des données:
 
 -> Charger l'ensemble de données des critiques (reviews) de films IMDb à partir d'un fichier CSV.
+
 -> Transformer les étiquettes de sentiment en nombres entiers (0 pour « négatif », 1 pour « positif »).
+
 -> Diviser l'ensemble de données en ensembles de train, de validation et de test.
 
 4/ Nettoyage du texte:
@@ -67,6 +69,7 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
 5/ Custom Dataset Class:
 
 -> Définire un Dataset class PyTorch personnalisée (CustomDataset) pour gérer les données des critiques de films.
+
 -> Tokenise et encode les phrases d'entrée à l'aide du tokenizer BERT.
 
        class CustomDataset(Dataset):
@@ -101,7 +104,9 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
 6/ Training Loop:
 
 -> Implémenter des fonctions (train_epoch et eval_epoch) pour former et évaluer le modèle pour une époque.
+
 -> Utiliser le modèle BERT pour la classification des séquences (BertForSequenceClassification).
+
 -> Optimiser le modèle à l'aide de l'optimiseur AdamW et d'un planificateur de taux d'apprentissage linéaire.
 
 7/  Tokenization:
@@ -122,5 +127,19 @@ Initialisation d'un modèle BERT pour la classification de séquences. BertForSe
           val_dataset = CustomDataset(val_df['review'], val_df['sentiment'], tokenizer, MAX_LEN, clean_text=clean_text)
           test_dataset = CustomDataset(test_df['review'], test_df['sentiment'], tokenizer, MAX_LEN, clean_text=clean_text)
 
-Création d'instances d'un ensemble de données personnalisé (CustomDataset) pour la formation, la validation et les tests. Cette classe d'ensemble de données utilise le tokenizer BERT pour prétraiter les données texte.
+Création d'instances d'un ensemble de données personnalisé (CustomDataset) pour le training, la validation et les tests. Cette classe d'ensemble de données utilise le tokenizer BERT pour prétraiter les données texte.
+
+10/ Data Loaders:
+
+          train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+          val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
+          test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
           
+Les Data Loaders sont créés à l'aide du "DataLoader" de PyTorch pour gérer le chargement des lots pendant le training, la validation et les tests. Les Data Loaders sont essentiels pour parcourir efficacement l’ensemble de données par lots (batch).
+
+11/ Optimizer and Scheduler:
+
+          optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE)
+          scheduler = get_scheduler("linear", optimizer, num_warmup_steps=0, num_training_steps=len(train_loader) * NUM_EPOCHS)
+La combinaison d'un optimizer et d'un Scheduler du Learning Rate permet de former le modèle plus efficacement en ajustant le Learning Rate pendant la formation. Les méthodes de taux d'apprentissage adaptatif comme AdamW sont de puissants optimizers, et les programmes de Learning Rate aident à contrôler l'évolution du Learning Rate pendant le training.
+
