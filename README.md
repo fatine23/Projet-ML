@@ -146,5 +146,6 @@ La combinaison d'un optimizer et d'un Scheduler du Learning Rate permet de forme
 12/ Training Loop:
 
 Boucler sur les époques et entraîner le modèle BERT sur les données d'entraînement. Les mesures d'entraînement telles que la perte et la précision sont enregistrées pour une analyse ultérieure.
+
 ![Resultat d'entraînement sur 5 epochs ](Screenshot from 2023-12-15 11-51-48.png)
 
