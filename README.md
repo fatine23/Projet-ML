@@ -177,3 +177,5 @@ La précision de validation croissante suivie d'une stabilisation suggère que l
 13/ Analyse de performances:
 
 -> Classification report: 
+
+![Screenshot from 2023-12-15 12-42-27](https://github.com/fatine23/Projet-ML/assets/113341897/ede3caed-30a8-4ccc-a941-1462f58f48a9)
