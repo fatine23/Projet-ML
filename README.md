@@ -24,3 +24,26 @@ PyTorch : cadre d'apprentissage en profondeur pour la création et la formation 
 Bibliothèque Transformers : la bibliothèque de Hugging Face pour les modèles de langage pré-entraînés comme BERT.
 
 Visualisation des données : Matplotlib pour créer des visualisations de courbes d'entraînement.
+
+## Etapes d'études 
+1/ Le choix de modèles Transformer basés sur BERT: 
+
+      Compréhension contextuelle : BERT (Bidirectionnel Encoder Representations from Transformers) est un modèle basé sur un transformateur qui capture les informations contextuelles du contexte gauche et droit de chaque mot dans une phrase. Cette compréhension contextuelle est cruciale pour l’analyse des sentiments, où la signification d’un mot ou d’une expression peut fortement dépendre du contexte qui l’entoure.
+
+    Représentations pré-entraînées : BERT est pré-entraîné sur de grandes quantités de données textuelles, ce qui lui permet d'apprendre des représentations riches et généralisables du langage. Cette pré-formation aide à capturer des modèles nuancés et une sémantique pertinents pour les tâches d'analyse des sentiments.
+
+    Apprentissage par transfert : les transformateurs pré-entraînés comme BERT peuvent être affinés sur des tâches spécifiques en aval, telles que l'analyse des sentiments. Cette approche d'apprentissage par transfert exploite les connaissances acquises lors de la pré-formation et les adapte à la tâche cible, nécessitant souvent moins de données étiquetées pour un réglage précis.
+
+2/ Hyperparamètres :
+
+Définire des hyperparamètres tels que MAX_LEN (longueur maximale de la séquence), BATCH_SIZE, NUM_CLASSES (nombre de classes de sentiments), LEARNING_RATE, NUM_EPOCHS et le point de contrôle du modèle BERT (BERT_CHECKPOINT : est une variable qui spécifie le nom ou l'identifiant du modèle BERT (Bidirectionnel Encoder Representations from Transformers) pré-entraîné de la bibliothèque Hugging Face Transformers ).
+
+3/ Chargement et prétraitement des données :
+
+-> Charger l'ensemble de données des critiques (reviews) de films IMDb à partir d'un fichier CSV.
+-> Transformer les étiquettes de sentiment en nombres entiers (0 pour « négatif », 1 pour « positif »).
+-> Diviser l'ensemble de données en ensembles de train, de validation et de test.
+
+4/ Nettoyage du texte :
+
+Implémente une fonction (clean_text) pour supprimer les espaces supplémentaires et les balises HTML des révisions de texte.
