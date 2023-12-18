@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
@@ -12,8 +11,6 @@ import pandas as pd
 from tqdm.auto import tqdm
 
 from transformers import BertTokenizer, AutoModelForSequenceClassification, get_scheduler
-from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import StratifiedKFold
 
 
 
@@ -30,12 +27,6 @@ NUM_CLASSES = 2
 LEARNING_RATE = 2e-5
 NUM_EPOCHS= 5
 BERT_CHECKPOINT = 'bert-base-uncased'
-
-# Define the hyperparameter grid
-param_grid = {
-    'learning_rate': [1e-5, 2e-5, 3e-5],
-    'batch_size': [16, 32, 64],
-}
 
 # Load your dataset
 df = pd.read_csv('IMDB Dataset.csv')  # Replace with the path to your dataset
@@ -197,20 +188,6 @@ test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 # Define the optimizer and scheduler
 optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 scheduler = get_scheduler("linear", optimizer, num_warmup_steps=0, num_training_steps=len(train_loader) * NUM_EPOCHS)
-
-
-# Create a StratifiedKFold object for cross-validation
-cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
-
-# Create an instance of the GridSearchCV
-grid_search = GridSearchCV(estimator=BaseModel, param_grid=param_grid, scoring='accuracy', cv=cv, n_jobs=-1, verbose=2)
-
-# Fit the GridSearchCV to the data
-grid_search.fit(train_loader)  # You may need to adjust this based on your specific data loader
-
-# Get the best hyperparameters
-best_params = grid_search.best_params_
-print("Best Hyperparameters:", best_params)
 
 # Train the model
 train_losses = []
