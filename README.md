@@ -197,3 +197,9 @@ La matrice de confusion indique que le modèle fonctionne bien, avec une répart
 La courbe indique une séparation parfaite des instances positives et négatives (pour des valeurs très petites de False positive on a une augmentation des True positifs).
 
 Une AUC de 0,9 reflète un modèle de haute qualité avec de fortes capacités de discrimination. Cela suggère que le modèle fonctionne bien sur une gamme de seuils de classification, atteignant un bon équilibre entre les vrais positifs et les faux positifs.
+
+
+14/ Prédiction sur de nouvelles séquences:
+
+Fournir une interface simple permettant aux utilisateurs de saisir du texte, et le modèle BERT pré-entraîné prédit si le sentiment du texte saisi est positif ou négatif.
+
