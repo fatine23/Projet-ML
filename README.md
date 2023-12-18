@@ -36,6 +36,14 @@ Visualisation des données : Matplotlib pour créer des visualisations de courbe
 
 2/ Hyperparamètres:
 
+          # Hyperparameters
+          MAX_LEN = 128
+          BATCH_SIZE = 32
+          NUM_CLASSES = 2
+          LEARNING_RATE = 2e-5
+          NUM_EPOCHS= 5
+          BERT_CHECKPOINT = 'bert-base-uncased'
+
 Définire des hyperparamètres tels que MAX_LEN (longueur maximale de la séquence), BATCH_SIZE, NUM_CLASSES (nombre de classes de sentiments), LEARNING_RATE, NUM_EPOCHS et le point de contrôle du modèle BERT (BERT_CHECKPOINT : est une variable qui spécifie le nom ou l'identifiant du modèle BERT (Bidirectionnel Encoder Representations from Transformers) pré-entraîné de la bibliothèque Hugging Face Transformers ).
 
 3/ Chargement et prétraitement des données:
@@ -69,14 +77,14 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
         self.tokenizer = tokenizer
         self.max_len = max_len
 
-    def __len__(self):
-        return len(self.review)
+        def __len__(self):
+          return len(self.review)
 
-    def __getitem__(self, idx):
-        y = torch.tensor(self.target[idx], dtype=torch.long)
-        X = str(self.review[idx])
-        if self.clean_text:
-            X = self.clean_text(X)
+        def __getitem__(self, idx):
+          y = torch.tensor(self.target[idx], dtype=torch.long)
+          X = str(self.review[idx])
+           if self.clean_text:
+              X = self.clean_text(X)
         
         encoded_X = self.tokenizer(
             X, 
@@ -90,8 +98,29 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
                 'attention_mask': encoded_X['attention_mask'].squeeze(),
                 'labels': y}
 
-6/Training Loop:
+6/ Training Loop:
 
-Implémente des fonctions (train_epoch et eval_epoch) pour former et évaluer le modèle pour une époque.
-Utilise le modèle BERT pour la classification des séquences (BertForSequenceClassification).
-Optimise le modèle à l'aide de l'optimiseur AdamW et d'un planificateur de taux d'apprentissage linéaire.
+-> Implémenter des fonctions (train_epoch et eval_epoch) pour former et évaluer le modèle pour une époque.
+-> Utiliser le modèle BERT pour la classification des séquences (BertForSequenceClassification).
+-> Optimiser le modèle à l'aide de l'optimiseur AdamW et d'un planificateur de taux d'apprentissage linéaire.
+
+7/  Tokenization:
+
+          tokenizer = BertTokenizer.from_pretrained(BERT_CHECKPOINT)
+          
+Création d'un tokenizer pour BERT à l'aide du point de contrôle spécifié (BERT_CHECKPOINT). Le tokenizer est chargé de convertir le texte dans un format que BERT peut comprendre.
+
+8/ Model Initialization:
+
+          model = BertForSequenceClassification.from_pretrained(BERT_CHECKPOINT, num_labels=NUM_CLASSES)
+
+Initialisation d'un modèle BERT pour la classification de séquences. BertForSequenceClassification est un modèle BERT pré-entraîné, affiné pour la tâche spécifique de classification de séquences avec le nombre spécifié de classes (NUM_CLASSES).
+
+9/ Dataset Creation:
+
+          train_dataset = CustomDataset(train_df['review'], train_df['sentiment'], tokenizer, MAX_LEN, clean_text=clean_text)
+          val_dataset = CustomDataset(val_df['review'], val_df['sentiment'], tokenizer, MAX_LEN, clean_text=clean_text)
+          test_dataset = CustomDataset(test_df['review'], test_df['sentiment'], tokenizer, MAX_LEN, clean_text=clean_text)
+
+Création d'instances d'un ensemble de données personnalisé (CustomDataset) pour la formation, la validation et les tests. Cette classe d'ensemble de données utilise le tokenizer BERT pour prétraiter les données texte.
+          
