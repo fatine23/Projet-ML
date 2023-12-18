@@ -204,3 +204,17 @@ Une AUC de 0,9 reflète un modèle de haute qualité avec de fortes capacités d
 Fournir une interface simple permettant aux utilisateurs de saisir du texte, et le modèle BERT pré-entraîné prédit si le sentiment du texte saisi est positif ou négatif.
 
 ![Screenshot from 2023-12-15 17-52-18](https://github.com/fatine23/Projet-ML/assets/113341897/dab4dc9c-f7d1-499b-a271-0a95fd087abf)
+
+
+## Conclusion:
+
+Dans ce projet d'analyse des sentiments, j'ai utilisé des techniques de traitement du langage naturel, en tirant spécifiquement parti de modèles basés sur des transformers, pour discerner les sentiments des critiques de films. Le modèle, basé sur l'architecture BERT, a démontré des performances impressionnantes dans la classification des sentiments comme positifs ou négatifs.
+
+# Défis et travaux futurs :
+
+Malgré le succès de ce modèle d'analyse des sentiments, il existe des opportunités d'amélioration et d'expansion :
+
+Une exploration plus approfondie des architectures de modèles au-delà du BERT, telles que les modèles basés sur GPT, pourrait fournir un aperçu d'approches alternatives.
+L'incorporation d'un ensemble de données plus vaste et plus diversifié peut améliorer la capacité du modèle à généraliser à différents genres et styles d'écriture.
+
+En conclusion, ce modèle d'analyse des sentiments a non seulement atteint une précision impressionnante, mais a également démontré son potentiel pour des applications concrètes dans la compréhension et la classification des sentiments dans les données textuelles.
