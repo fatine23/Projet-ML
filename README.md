@@ -172,3 +172,8 @@ La précision croissante du train indique que le modèle apprend et ajuste effic
  -> Précision de validation :
 
 La précision de validation croissante suivie d'une stabilisation suggère que le modèle est capable de se généraliser à la validation définie jusqu'à un certain point. Après ce point, on ne pourra pas améliorer de manière significative les performances sur l'ensemble de validation.
+
+
+13/ Analyse de performances:
+
+-> Classification report: 
