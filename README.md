@@ -184,3 +184,5 @@ Le rapport de classification suggère que le modèle fonctionne bien pour la cla
 En effet, Une précision élevée indique que lorsque le modèle prédit une classe, il est probable qu'elle soit correcte et Un rappel élevé indique que le modèle est capable d'identifier une grande partie des instances réelles d'une classe.
 
 -> Matrice de confusion : 
+
+![Screenshot from 2023-12-15 16-23-38](https://github.com/fatine23/Projet-ML/assets/113341897/14e7fde1-a77c-461f-81df-8a692813a469)
