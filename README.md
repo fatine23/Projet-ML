@@ -159,4 +159,16 @@ Boucler sur les époques et entraîner le modèle BERT sur les données d'entra�
 
   ![Training results](https://github.com/fatine23/Projet-ML/assets/113341897/2a3b3d5d-0039-4a15-be95-08fc0dd5769f)
 
-  
+ ** Au niveau du Loss :**
+
+  -> On remarque que la Train Loss décroit, ce qui est un signe positif, l'objectif ultime est que le modèle se généralise bien à de nouvelles données invisibles, comme en témoigne la validation Loss. Celle-ci augmente ( La perte de validation croissante suggère que le modèle ne se généralise pas bien aux nouvelles données invisibles), cela indique que des mesures doivent être prises pour éviter le surajustement et améliorer la capacité du modèle à généraliser. La régularisation et l'ajustement de la complexité du modèle sont des stratégies courantes pour résoudre ce problème.
+
+ ** Au niveau de l'Accuracy:**
+
+ -> Précision de l'entraînement :
+
+La précision croissante du train indique que le modèle apprend et ajuste efficacement les données d'entraînement. Il est de mieux en mieux capable de prédire les étiquettes sur les données vues au cours de l'entraînement.
+
+ -> Précision de validation :
+
+La précision de validation croissante suivie d'une stabilisation suggère que le modèle est capable de se généraliser à la validation définie jusqu'à un certain point. Après ce point, on ne pourra pas améliorer de manière significative les performances sur l'ensemble de validation.
