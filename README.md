@@ -188,3 +188,9 @@ En effet, Une précision élevée indique que lorsque le modèle prédit une cla
 ![Screenshot from 2023-12-15 16-23-38](https://github.com/fatine23/Projet-ML/assets/113341897/14e7fde1-a77c-461f-81df-8a692813a469)
 
 La matrice de confusion indique que le modèle fonctionne bien, avec une répartition relativement équilibrée des vrais positifs, des vrais négatifs, des faux positifs et des faux négatifs. La haute précision et le rappel pour la classe 1 suggèrent que le modèle est efficace pour identifier correctement les instances de classe 1, de même pour la classe 0.
+
+
+ -> Courbe ROC: 
+
+ ![Screenshot from 2023-12-15 17-48-28](https://github.com/fatine23/Projet-ML/assets/113341897/3297c200-bc96-435c-a528-60d89a2caa55)
+
