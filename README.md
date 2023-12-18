@@ -179,3 +179,8 @@ La précision de validation croissante suivie d'une stabilisation suggère que l
 -> Classification report: 
 
 ![Screenshot from 2023-12-15 12-42-27](https://github.com/fatine23/Projet-ML/assets/113341897/ede3caed-30a8-4ccc-a941-1462f58f48a9)
+
+Le rapport de classification suggère que le modèle fonctionne bien pour la classe 0 et la classe 1. Les scores F1 élevés indiquent un bon équilibre entre précision et rappel, et le modèle est efficace pour prédire correctement les instances pour les deux classes.
+En effet, Une précision élevée indique que lorsque le modèle prédit une classe, il est probable qu'elle soit correcte et Un rappel élevé indique que le modèle est capable d'identifier une grande partie des instances réelles d'une classe.
+
+-> Matrice de confusion : 
