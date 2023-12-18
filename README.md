@@ -3,22 +3,24 @@
 ## Introduction
 L'analyse des sentiments est un cas d'utilisation de la classification de texte qui consiste à attribuer une catégorie à un texte donné. Il s'agit d'une puissante technique de traitement du langage naturel (NLP) qui permet d'analyser automatiquement ce que les gens pensent d'un sujet donné. Cela peut aider les entreprises et les particuliers à prendre rapidement des décisions plus éclairées. L'analyse des sentiments a par exemple des applications dans les médias sociaux, le service client et les études de marché.
 
-L'objectif de ce projet est de construire un modèle capable de prédire avec précision si une critique de film est positive ou non. 
+L'objectif de ce projet est de construire un modèle capable de prédire avec précision si une critiquee(review) de film est positive ou non. 
 
 ## Objectifs du projet
-Exploration des données : comprenez l'ensemble de données IMDb Movie Reviews, y compris sa taille, sa structure et la répartition des sentiments.
 
-Prétraitement des données : nettoyez et préparez les données textuelles pour la modélisation. Cela implique des tâches telles que le nettoyage du texte, la tokenisation et la gestion des déséquilibres dans les classes de sentiments.
+-> Exploration des données : comprendre l'ensemble de données IMDb Movie Reviews, y compris sa taille, sa structure et la répartition des sentiments.
 
-Sélection du modèle : choisissez et mettez en œuvre un modèle d'apprentissage en profondeur approprié pour l'analyse des sentiments. Dans ce cas, une combinaison de modèles Transformer basés sur BERT est utilisée.
+-> Prétraitement des données : nettoyez et préparez les données textuelles pour la modélisation. Cela implique des tâches telles que le nettoyage du texte et la tokenisation dans les classes de sentiments.
 
-Formation et évaluation : entraînez le modèle choisi sur l'ensemble de données IMDb, évaluez ses performances et affinez si nécessaire. Des mesures telles que l’exactitude, la perte et éventuellement d’autres comme la précision et le rappel peuvent être prises en compte.
+-> Sélection du modèle : choisir et mettre en œuvre un modèle d'apprentissage en profondeur approprié pour l'analyse des sentiments. Dans mon cas, une combinaison de modèles Transformer basés sur BERT est utilisée.
 
-Visualisation des courbes d'entraînement : surveillez la progression de l'entraînement en visualisant les courbes de perte et de précision au fil des époques.
+-> Formation et évaluation : entraîner le modèle choisi sur l'ensemble de données IMDb, évaluer ses performances et affiner si nécessaire. Des mesures telles que l’accuracy, la perte et éventuellement d’autres comme la précision et le rappel peuvent être prises en compte.
 
-Tests et prédiction : évaluez les performances du modèle sur un ensemble de tests distinct et utilisez le modèle formé pour prédire les sentiments sur les nouveaux avis invisibles.
+-> Visualisation des courbes d'entraînement : surveiller la progression de l'entraînement en visualisant les courbes de perte et de précision au fil des époques.
+
+-> Tests et prédiction : évaluer les performances du modèle sur un ensemble de tests distinct et utiliser le modèle formé pour prédire les sentiments sur les nouveaux avis invisibles.
 
 ## Technologies utilisées
+
 PyTorch : cadre d'apprentissage en profondeur pour la création et la formation de modèles de réseaux neuronaux.
 
 Bibliothèque Transformers : la bibliothèque de Hugging Face pour les modèles de langage pré-entraînés comme BERT.
@@ -32,7 +34,7 @@ Visualisation des données : Matplotlib pour créer des visualisations de courbe
 
 -> Représentations pré-entraînées : BERT est pré-entraîné sur de grandes quantités de données textuelles, ce qui lui permet d'apprendre des représentations riches et généralisables du langage. Cette pré-formation aide à capturer des modèles nuancés et une sémantique pertinents pour les tâches d'analyse des sentiments.
 
--> Apprentissage par transfert : les transformateurs pré-entraînés comme BERT peuvent être affinés sur des tâches spécifiques en aval, telles que l'analyse des sentiments. Cette approche d'apprentissage par transfert exploite les connaissances acquises lors de la pré-formation et les adapte à la tâche cible, nécessitant souvent moins de données étiquetées pour un réglage précis.
+-> Apprentissage par transfert : les transformateurs pré-entraînés comme BERT peuvent être affinés sur des tâches spécifiques en aval, telles que l'analyse des sentiments. Cette approche d'apprentissage par transfert exploite les connaissances acquises lors du pré-entraînement et les adapte à la tâche cible, nécessitant souvent moins de données étiquetées pour un réglage précis.
 
 2/ Hyperparamètres:
 
@@ -68,9 +70,9 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
 
 5/ Custom Dataset Class:
 
--> Définire un Dataset class PyTorch personnalisée (CustomDataset) pour gérer les données des critiques de films.
+-> Définire un Dataset class PyTorch personnalisé (CustomDataset) pour gérer les données des critiques de films.
 
--> Tokenise et encode les phrases d'entrée à l'aide du tokenizer BERT.
+-> Tokeniser et encoder les phrases d'entrée à l'aide du tokenizer BERT.
 
        class CustomDataset(Dataset):
        def __init__(self, review, target, tokenizer, max_len, clean_text=None):
@@ -107,7 +109,7 @@ Implémente une fonction (clean_text) pour supprimer les espaces supplémentaire
 
 -> Utiliser le modèle BERT pour la classification des séquences (BertForSequenceClassification).
 
--> Optimiser le modèle à l'aide de l'optimiseur AdamW et d'un planificateur de taux d'apprentissage linéaire.
+-> Optimiser le modèle à l'aide de l'optimiseur AdamW et d'un Scheduler de taux d'apprentissage linéaire.
 
 7/  Tokenization:
 
@@ -141,7 +143,7 @@ Les Data Loaders sont créés à l'aide du "DataLoader" de PyTorch pour gérer l
 
           optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE)
           scheduler = get_scheduler("linear", optimizer, num_warmup_steps=0, num_training_steps=len(train_loader) * NUM_EPOCHS)
-La combinaison d'un optimizer et d'un Scheduler du Learning Rate permet de former le modèle plus efficacement en ajustant le Learning Rate pendant la formation. Les méthodes de taux d'apprentissage adaptatif comme AdamW sont de puissants optimizers, et les programmes de Learning Rate aident à contrôler l'évolution du Learning Rate pendant le training.
+La combinaison d'un optimizer et d'un Scheduler du Learning Rate permet de former le modèle plus efficacement en ajustant le Learning Rate pendant l'entraînement. Les méthodes de taux d'apprentissage adaptatif comme AdamW sont de puissants optimizers, et les programmes de Learning Rate aident à contrôler l'évolution du Learning Rate pendant le training.
 
 12/ Training Loop:
 
@@ -194,7 +196,7 @@ La matrice de confusion indique que le modèle fonctionne bien, avec une répart
 
  ![Screenshot from 2023-12-15 17-48-28](https://github.com/fatine23/Projet-ML/assets/113341897/3297c200-bc96-435c-a528-60d89a2caa55)
 
-La courbe indique une séparation parfaite des instances positives et négatives (pour des valeurs très petites de False positive on a une augmentation des True positifs).
+La courbe indique une séparation parfaite des instances positives et négatives (pour des valeurs très petites de False positive, on a une augmentation des True positives).
 
 Une AUC de 0,9 reflète un modèle de haute qualité avec de fortes capacités de discrimination. Cela suggère que le modèle fonctionne bien sur une gamme de seuils de classification, atteignant un bon équilibre entre les vrais positifs et les faux positifs.
 
@@ -208,7 +210,7 @@ Fournir une interface simple permettant aux utilisateurs de saisir du texte, et 
 
 ## Conclusion:
 
-Dans ce projet d'analyse des sentiments, j'ai utilisé des techniques de traitement du langage naturel, en tirant spécifiquement parti de modèles basés sur des transformers, pour discerner les sentiments des critiques de films. Le modèle, basé sur l'architecture BERT, a démontré des performances impressionnantes dans la classification des sentiments comme positifs ou négatifs.
+Dans ce projet d'analyse des sentiments, j'ai utilisé des techniques de traitement du langage naturel NLP, en tirant spécifiquement parti de modèles basés sur des transformers, pour discerner les sentiments des reviews de films. Le modèle, basé sur l'architecture BERT, a démontré des performances impressionnantes dans la classification des sentiments comme positifs ou négatifs.
 
 # Défis et travaux futurs :
 
