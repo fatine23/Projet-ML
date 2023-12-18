@@ -152,6 +152,11 @@ Boucler sur les époques et entraîner le modèle BERT sur les données d'entra�
 => Observations :
 
   La perte (Loss) et la précision (Accuracy) de l’entraînement s’améliorent généralement à chaque époque, ce qui est un signe positif. Cela indique que le modèle apprend à partir des données de formation.
+  
   Cependant, il faut faire attention au surapprentissage. Même si la précision de l'entraînement augmente, si la précision de la validation commence à diminuer ou à atteindre des plateaux, cela peut suggérer un surapprentissage.
+  
   Dans ce cas, la précision de la validation est relativement stable, ce qui est une bonne chose. Il se situe toujours autour de 89 %, ce qui indique que le modèle fonctionne de manière cohérente sur l'ensemble de validation.
+
+  ![Training results](https://github.com/fatine23/Projet-ML/assets/113341897/2a3b3d5d-0039-4a15-be95-08fc0dd5769f)
+
   
